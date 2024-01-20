@@ -1,0 +1,10 @@
+name: OnlineReward
+main: pers.tany.yhonline.Main
+version: 1.0.0
+author: tany
+depend: [ YukiNoaAPI ]
+description: 每日玩家在线数量奖励
+commands:
+  OnlineReward:
+    usage: /OnlineReward
+    aliases: [ or ]
