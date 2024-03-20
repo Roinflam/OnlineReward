@@ -1,9 +1,9 @@
-package pers.tany.yhonline.command;
+package pers.tany.onlinereward.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import pers.tany.yhonline.Main;
+import pers.tany.onlinereward.Main;
 import pers.tany.yukinoaapi.interfacepart.configuration.IConfig;
 
 public class Commands implements CommandExecutor {

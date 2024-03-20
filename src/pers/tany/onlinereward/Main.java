@@ -1,12 +1,12 @@
-package pers.tany.yhonline;
+package pers.tany.onlinereward;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import pers.tany.yhonline.command.Commands;
-import pers.tany.yhonline.listenevent.Events;
+import pers.tany.onlinereward.command.Commands;
+import pers.tany.onlinereward.listenevent.Events;
 import pers.tany.yukinoaapi.interfacepart.configuration.IConfig;
 import pers.tany.yukinoaapi.interfacepart.other.ITime;
 import pers.tany.yukinoaapi.interfacepart.register.IRegister;
@@ -30,7 +30,7 @@ public class Main extends JavaPlugin {
         config = IConfig.loadConfig(this, "", "config");
         data = IConfig.loadConfig(this, "", "data");
 
-        IRegister.registerCommands(this, "yhonline", new Commands());
+        IRegister.registerCommands(this, "onlinerewards", new Commands());
         IRegister.registerEvents(this, new Events());
 
         new BukkitRunnable() {
@@ -38,7 +38,7 @@ public class Main extends JavaPlugin {
             @Override
             public void run() {
                 for (String playerNumber : Main.config.getConfigurationSection("PlayerOnlineNumber").getKeys(false)) {
-                    if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.config.getStringList("Number").contains(playerNumber)) {
+                    if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.data.getStringList("Number").contains(playerNumber)) {
                         for (String command : Main.config.getStringList("PlayerOnlineNumber." + playerNumber)) {
                             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
                         }
@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
                     }
                 }
                 for (String playerNumber : Main.config.getConfigurationSection("ForeverPlayerOnlineNumber").getKeys(false)) {
-                    if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.config.getStringList("ForeverNumber").contains(playerNumber)) {
+                    if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.data.getStringList("ForeverNumber").contains(playerNumber)) {
                         for (String command : Main.config.getStringList("ForeverPlayerOnlineNumber." + playerNumber)) {
                             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
                         }

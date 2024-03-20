@@ -22,6 +22,7 @@ ForeverPlayerOnlineNumber:
     - 'bc 服务器首次到达人数50人，全体发放10000游戏币！'
     - 'eco give * 10000'
 
+
 #每日刷新的时间
 #小时
 Hour: 4
