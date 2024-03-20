@@ -2,6 +2,7 @@ package pers.tany.onlinereward;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -48,6 +49,19 @@ public class Main extends JavaPlugin {
                         IConfig.saveConfig(Main.plugin, Main.data, "", "data");
                     }
                 }
+                for (String playerNumber : Main.config.getConfigurationSection("EveryPlayerOnlineNumber").getKeys(false)) {
+                    if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.data.getStringList("EveryNumber").contains(playerNumber)) {
+                        for (String command : Main.config.getStringList("EveryPlayerOnlineNumber." + playerNumber)) {
+                            for (Player player : Bukkit.getOnlinePlayers()) {
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("[player]", player.getName()));
+                            }
+                        }
+                        List<String> list = Main.data.getStringList("EveryNumber");
+                        list.add(playerNumber);
+                        Main.data.set("EveryNumber", list);
+                        IConfig.saveConfig(Main.plugin, Main.data, "", "data");
+                    }
+                }
                 for (String playerNumber : Main.config.getConfigurationSection("ForeverPlayerOnlineNumber").getKeys(false)) {
                     if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.data.getStringList("ForeverNumber").contains(playerNumber)) {
                         for (String command : Main.config.getStringList("ForeverPlayerOnlineNumber." + playerNumber)) {
@@ -56,6 +70,19 @@ public class Main extends JavaPlugin {
                         List<String> list = Main.data.getStringList("ForeverNumber");
                         list.add(playerNumber);
                         Main.data.set("ForeverNumber", list);
+                        IConfig.saveConfig(Main.plugin, Main.data, "", "data");
+                    }
+                }
+                for (String playerNumber : Main.config.getConfigurationSection("EveryForeverPlayerOnlineNumber").getKeys(false)) {
+                    if (Bukkit.getOnlinePlayers().size() >= Integer.parseInt(playerNumber) && !Main.data.getStringList("EveryForeverNumber").contains(playerNumber)) {
+                        for (String command : Main.config.getStringList("EveryForeverPlayerOnlineNumber." + playerNumber)) {
+                            for (Player player : Bukkit.getOnlinePlayers()) {
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("[player]", player.getName()));
+                            }
+                        }
+                        List<String> list = Main.data.getStringList("EveryForeverNumber");
+                        list.add(playerNumber);
+                        Main.data.set("EveryForeverNumber", list);
                         IConfig.saveConfig(Main.plugin, Main.data, "", "data");
                     }
                 }
@@ -68,6 +95,7 @@ public class Main extends JavaPlugin {
             public void run() {
                 if (Integer.parseInt(ITime.getNowString().split(":")[3]) == Main.config.getInt("Hour") && Integer.parseInt(ITime.getNowString().split(":")[4]) == Main.config.getInt("Minute")) {
                     Main.data.set("Number", new ArrayList<>());
+                    Main.data.set("EveryNumber", new ArrayList<>());
                     IConfig.saveConfig(Main.plugin, Main.data, "", "data");
                 }
             }

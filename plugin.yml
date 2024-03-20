@@ -1,6 +1,6 @@
 name: OnlineRewards
 main: pers.tany.onlinereward.Main
-version: 1.0.1
+version: 1.0.2
 author: tany
 depend: [ YukiNoaAPI ]
 description: 每日玩家在线数量奖励

@@ -10,6 +10,15 @@ PlayerOnlineNumber:
     - 'bc 服务器今日到达人数50人，全体发放2000游戏币！'
     - 'eco give * 2000'
 
+#每日服务器每到达一定人数后，每个玩家后台执行的指令（次日刷新）
+EveryPlayerOnlineNumber:
+  '30':
+    - 'm [player] 你收到了游戏币奖励！'
+  '40':
+    - 'm [player] 你收到了游戏币奖励！'
+  '50':
+    - 'm [player] 你收到了游戏币奖励！'
+
 #服务器每到达一定人数后，执行的指令（里程碑，不刷新）
 ForeverPlayerOnlineNumber:
   '30':
@@ -21,6 +30,15 @@ ForeverPlayerOnlineNumber:
   '50':
     - 'bc 服务器首次到达人数50人，全体发放10000游戏币！'
     - 'eco give * 10000'
+
+#服务器每到达一定人数后，每个玩家后台执行的指令（里程碑，不刷新）
+EveryForeverPlayerOnlineNumber:
+  '30':
+    - 'm [player] 你收到了里程碑游戏币奖励！'
+  '40':
+    - 'm [player] 你收到了里程碑游戏币奖励！'
+  '50':
+    - 'm [player] 你收到了里程碑游戏币奖励！'
 
 
 #每日刷新的时间
